@@ -651,8 +651,24 @@ html {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .right-0 {
   right: 0px;
+}
+
+.-right-7 {
+  right: -1.75rem;
+}
+
+.top-1 {
+  top: 0.25rem;
+}
+
+.-right-5 {
+  right: -1.25rem;
 }
 
 .my-4 {
@@ -706,6 +722,10 @@ html {
   width: 15rem;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .items-center {
   align-items: center;
 }
@@ -745,25 +765,6 @@ html {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.bg-\[\#9DA825\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(157 168 37 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#9DA825\]\/50 {
-  background-color: rgb(157 168 37 / 0.5);
-}
-
-.bg-\[\#ffffff\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#E4F52A\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(228 245 42 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#FFFFFF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -798,14 +799,13 @@ html {
   line-height: 1;
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+
+.hover\:bg-\[\#E4F52A\]\/30:hover {
+  background-color: rgb(228 245 42 / 0.3);
 }
 
 .hover\:text-\[\#429DF5\]:hover {
