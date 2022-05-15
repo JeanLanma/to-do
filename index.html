@@ -30,7 +30,7 @@
 
     <section class="w-full my-4" id="task_list">
 
-        <article class="my-2" onclick="setStatus(this)" data-status="0">
+        <article class="my-2" onclick="setStatus(this)" data-status="0" data-task-id="null">
             <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status hover:bg-[#E4F52A]/30">
                 <div class="flex">
                     <div><p class="text-xl">Añadir una Nueva Tarea..</p></div>
@@ -44,6 +44,31 @@
     </section>
 
 <script>
+const LS = (key, value = null) => {
+    if(key && value != null) return localStorage.setItem(key, value);
+    else return localStorage.getItem(key);
+}
+
+const setID = () => {
+    if(LS('counterID') == null) LS('counterID', 0);
+    LS('counterID', Number(LS('counterID')) + 1);
+    return Number(LS('counterID'));
+}
+
+const storeTask = ({task, status}) => {
+    const tasksList = getTasksLS();
+    const newTask = {id:setID(), task:task, status: 1};
+    tasksList.push(newTask);
+    LS('tasks', JSON.stringify(tasksList));
+    return newTask;
+}
+
+const getTasksLS = () => {
+    return JSON.parse(LS('tasks')) || [];
+}
+
+// storeTask({task: 'Some task', status: 1});
+
 
 const task = document.getElementById('add_task');
 const tasksContainer = document.getElementById('task_list');
@@ -66,13 +91,15 @@ const setStatus = (element) => {
 }
 
 const saveTask = () => {
-    tasksContainer.innerHTML += taskTemplate(task.value);
+    const lastTask = storeTask({task: task.value, status: 0});
+    tasksContainer.innerHTML += taskTemplate(task.value, lastTask.id);
     task.value = '';
 }
 
 const deleteTask = (e) => {
     if(e.parentElement.parentElement){
         e.parentElement.parentElement.remove();
+        console.log(e.parentElement.parentElement.getAttribute('data-task-id'));
     }
 }
 
@@ -83,10 +110,10 @@ const listenEnter = (e) => {
 }
 
 
-const taskTemplate = (content) => {
+const taskTemplate = (content, id) => {
     let status = 0;
     return `
-    <article class="my-2" onclick="setStatus(this)" data-status="${status}">
+    <article class="my-2" onclick="setStatus(this)" data-status="${status}" data-task-id="${id}">
             <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status hover:bg-[#E4F52A]/30">
                 <div class="flex">
                     <div><p class="text-xl truncate w-60">${content}</p></div>
