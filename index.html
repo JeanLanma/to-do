@@ -16,13 +16,13 @@
 <body>
 
     <header class="h-16 flex items-center justify-center">
-        <h1 class="text-3xl underline text-center">to do list.</h1>
+        <h1 class="text-5xl underline text-center">To do list.</h1>
     </header>
 
     <section>
         <article class="flex justify-center items-center w-full px-3">
             <div class="relative">
-                <input name="add_task" id="add_task" type="text" placeholder="Add new task..." class="border border-black rounded-md w-80 h-14 text-xl" onkeypress="listenEnter(event)">
+                <input name="add_task" id="add_task" type="text" placeholder="Add new task..." class="border border-black rounded-md w-80 h-14 text-2xl" onkeypress="listenEnter(event)">
                 <label for="add_task" class="text-5xl absolute -right-5 top-1 mr-2 hover:text-[#429DF5]" onclick="saveTask()"><i class="fa-solid fa-circle-plus"></i></label>
             </div>
         </article>
@@ -33,10 +33,10 @@
         <article class="my-2" onclick="setStatus(this)" data-status="0" data-task-id="null">
             <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status hover:bg-[#E4F52A]/30">
                 <div class="flex">
-                    <div><p class="text-xl">Añadir una Nueva Tarea..</p></div>
+                    <div><p class="text-2xl">Añadir una Nueva Tarea..</p></div>
                 </div>
                 <div onclick="deleteTask(this)" class="cursor-pointer">
-                    <i class="fa-solid fa-xmark text-xl hover:text-[#F5635B]"></i>
+                    <i class="fa-solid fa-xmark text-2xl hover:text-[#F5635B]"></i>
                 </div>
             </div>
         </article>
@@ -157,10 +157,10 @@ const taskTemplate = (content, id, status = 0) => {
     <article class="my-2" onclick="setStatus(this)" data-status="${status}" data-task-id="${id}">
             <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md ${status == 0 ? 'bg-[#FFFFFF]' : 'bg-[#E4F52A]'} status hover:bg-[#E4F52A]/30">
                 <div class="flex">
-                    <div><p class="text-xl truncate w-60">${content}</p></div>
+                    <div><p class="text-2xl truncate w-60">${content}</p></div>
                 </div>
                 <div onclick="deleteTask(this)" class="cursor-pointer">
-                    <i class="fa-solid fa-xmark text-xl hover:text-[#F5635B]"></i>
+                    <i class="fa-solid fa-xmark text-2xl hover:text-[#F5635B]"></i>
                 </div>
             </div>
         </article>
