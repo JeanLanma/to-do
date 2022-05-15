@@ -58,7 +58,7 @@ const setID = () => {
 
 const storeTask = ({task, status}) => {
     const tasksList = getTasksLS();
-    const newTask = {id:setID(), task:task, status: 1};
+    const newTask = {id:setID(), task:task, status: 0};
     tasksList.push(newTask);
     LS('tasks', JSON.stringify(tasksList));
     return newTask;
