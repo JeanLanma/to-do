@@ -88,7 +88,9 @@ const renderTasks = () => {
         return taskTemplate(task.task, task.id);
     }).join('');
 
-    tasksContainer.innerHTML = taskHTML;
+    if(taskHTML !== ''){
+        tasksContainer.innerHTML = taskHTML ?? false;
+    }
 }
 
 const statusCode = {
