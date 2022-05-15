@@ -678,8 +678,22 @@ html {
   margin-right: auto;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
 }
 
 .block {
@@ -702,6 +716,10 @@ html {
   height: 3.5rem;
 }
 
+.h-11 {
+  height: 2.75rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -712,6 +730,14 @@ html {
 
 .w-60 {
   width: 15rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.w-36 {
+  width: 9rem;
 }
 
 .cursor-pointer {
@@ -740,8 +766,33 @@ html {
   border-radius: 0.375rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-x-0 {
+  border-left-width: 0px;
+  border-right-width: 0px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-t-0 {
+  border-top-width: 0px;
+}
+
+.border-none {
+  border-style: none;
 }
 
 .border-black {
@@ -754,14 +805,14 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#E4F52A\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(228 245 42 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#F5635B\] {
   --tw-bg-opacity: 1;
   background-color: rgb(245 99 91 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#E4F52A\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(228 245 42 / var(--tw-bg-opacity));
 }
 
 .px-3 {
@@ -774,6 +825,15 @@ html {
   padding-right: 1rem;
 }
 
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.pt-7 {
+  padding-top: 1.75rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -783,24 +843,28 @@ html {
   line-height: 1;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-.text-\[\#F5635B\] {
-  --tw-text-opacity: 1;
-  color: rgb(245 99 91 / var(--tw-text-opacity));
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-\[\#F5635B\] {
+  --tw-text-opacity: 1;
+  color: rgb(245 99 91 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -824,16 +888,4 @@ html {
 .hover\:text-\[\#F5635B\]:hover {
   --tw-text-opacity: 1;
   color: rgb(245 99 91 / var(--tw-text-opacity));
-}
-
-.hover\:text-black\/30:hover {
-  color: rgb(0 0 0 / 0.3);
-}
-
-.hover\:text-black\/90:hover {
-  color: rgb(0 0 0 / 0.9);
-}
-
-.hover\:text-\[\#F5635B\]\/90:hover {
-  color: rgb(245 99 91 / 0.9);
 }

@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <header class="h-16 flex items-center justify-center">
+    <header class="h-16 flex items-center justify-center mt-7">
         <h1 class="text-5xl underline text-center">To do list.</h1>
     </header>
 
@@ -99,12 +99,6 @@ const getTasksLS = () => {
     return JSON.parse(LS('tasks')) || [];
 }
 
-</script>
-
-<script>
-const task = document.getElementById('add_task');
-const tasksContainer = document.getElementById('task_list');
-
 const renderTasks = () => {
     const tasks = getTasksLS();
     
@@ -119,6 +113,11 @@ const renderTasks = () => {
         tasksContainer.innerHTML = taskHTML;
     }
 }
+</script>
+
+<script>
+const task = document.getElementById('add_task');
+const tasksContainer = document.getElementById('task_list');
 
 const ClearAll = () => {
     localStorage.clear();
