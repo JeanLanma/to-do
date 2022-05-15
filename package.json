@@ -1,0 +1,21 @@
+{
+  "name": "todotw",
+  "version": "1.0.0",
+  "description": "A simple todo template",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i src/tailwind.css -o style.css --watch",
+    "mini": "npx tailwindcss -i src/tailwind.css -o style.css --minify"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "Jean Lanma",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.1",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24"
+  }
+}

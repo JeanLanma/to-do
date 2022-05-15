@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do With Tailwind Theme</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="h-16 flex items-center justify-center">
+        <h1 class="text-3xl underline text-center">to do list.</h1>
+    </header>
+
+    <section>
+        <article class="flex justify-center items-center w-full px-3">
+            <input name="add_task" id="add_task" type="text" placeholder="Add new task..." class="border border-black rounded-md w-80 h-14 text-xl" onkeypress="listenEnter(event)">
+            <label for="add_task" class="text-5xl absolute right-0 mr-2 hover:text-[#429DF5]" onclick="saveTask()"><i class="fa-solid fa-circle-plus"></i></label>
+        </article>
+    </section>
+
+    <section class="w-full my-4" id="task_list">
+
+        <article class="my-2" onclick="setStatus(this)" data-status="0">
+            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md">
+                <div class="flex">
+                    <div class="h-5 w-5 mr-2 border-2 border-black bg-[#9DA825] rounded-full status"></div>
+                    <div><p class="text-xl">Dar de comer a mis mascotas</p></div>
+                </div>
+                <div onclick="deleteTask(this)">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+<script>
+
+const task = document.getElementById('add_task');
+const tasksContainer = document.getElementById('task_list');
+
+const statusCode = {
+    done: '#9DA825',
+    pending: '#E4F52A'
+}
+
+const setStatus = (element) => {
+    const statusVal = element.querySelector('.status');
+    const statusAttr = element.getAttribute('data-status');
+    if(statusAttr == 0){
+        statusVal.style.background = statusCode.done;
+        element.setAttribute('data-status', 1)
+    } else {
+        statusVal.style.background = statusCode.pending;
+        element.setAttribute('data-status', 0)
+    }
+}
+
+const saveTask = () => {
+    tasksContainer.innerHTML += taskTemplate(task.value);
+    task.value = '';
+}
+
+const deleteTask = (e) => {
+    if(e.parentElement.parentElement){
+        e.parentElement.parentElement.remove();
+    }
+}
+
+const listenEnter = (e) => {
+    if(e.code === 'Enter' && task.value != ''){
+        saveTask();
+    }
+}
+
+
+const taskTemplate = (content) => {
+    let status = 0;
+    return `
+    <article class="my-2" onclick="setStatus(this)" data-status="${status}">
+            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md">
+                <div class="flex">
+                    <div class="h-5 w-5 mr-2 border-2 border-black bg-[${statusCode.pending}] rounded-full status"></div>
+                    <div><p class="text-xl truncate w-60">${content}</p></div>
+                </div>
+                <div onclick="deleteTask(this)">
+                    <i class="fa-solid fa-xmark text-xl hover:text-[#F5635B]"></i>
+                </div>
+            </div>
+        </article>
+    `;
+}
+</script>
+</body>
+</html>
