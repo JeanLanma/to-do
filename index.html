@@ -29,13 +29,12 @@
     <section class="w-full my-4" id="task_list">
 
         <article class="my-2" onclick="setStatus(this)" data-status="0">
-            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md">
+            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status">
                 <div class="flex">
-                    <div class="h-5 w-5 mr-2 border-2 border-black bg-[#9DA825] rounded-full status"></div>
-                    <div><p class="text-xl">Dar de comer a mis mascotas</p></div>
+                    <div><p class="text-xl">Añadir una Nueva Tarea..</p></div>
                 </div>
                 <div onclick="deleteTask(this)">
-                    <i class="fa-solid fa-xmark text-xl"></i>
+                    <i class="fa-solid fa-xmark text-xl hover:text-[#F5635B]"></i>
                 </div>
             </div>
         </article>
@@ -48,8 +47,8 @@ const task = document.getElementById('add_task');
 const tasksContainer = document.getElementById('task_list');
 
 const statusCode = {
-    done: '#9DA825',
-    pending: '#E4F52A'
+    pending: '#ffffff',
+    done: '#E4F52A'
 }
 
 const setStatus = (element) => {
