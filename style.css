@@ -682,8 +682,16 @@ html {
   margin-right: 0.5rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-16 {
@@ -751,6 +759,11 @@ html {
   background-color: rgb(228 245 42 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#F5635B\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 99 91 / var(--tw-bg-opacity));
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -780,6 +793,16 @@ html {
   line-height: 2rem;
 }
 
+.text-\[\#F5635B\] {
+  --tw-text-opacity: 1;
+  color: rgb(245 99 91 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -801,4 +824,16 @@ html {
 .hover\:text-\[\#F5635B\]:hover {
   --tw-text-opacity: 1;
   color: rgb(245 99 91 / var(--tw-text-opacity));
+}
+
+.hover\:text-black\/30:hover {
+  color: rgb(0 0 0 / 0.3);
+}
+
+.hover\:text-black\/90:hover {
+  color: rgb(0 0 0 / 0.9);
+}
+
+.hover\:text-\[\#F5635B\]\/90:hover {
+  color: rgb(245 99 91 / 0.9);
 }
