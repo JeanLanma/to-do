@@ -43,6 +43,7 @@
 
     </section>
 
+
 <script>
 const LS = (key, value = null) => {
     if(key && value != null) return localStorage.setItem(key, value);
@@ -63,15 +64,32 @@ const storeTask = ({task, status}) => {
     return newTask;
 }
 
+const deleteTaskLS = (id) => {
+    const tasksList = getTasksLS().filter((task) => {
+        return task.id !== id;
+    });
+    LS('tasks', JSON.stringify(tasksList));
+}
+
 const getTasksLS = () => {
     return JSON.parse(LS('tasks')) || [];
 }
 
-// storeTask({task: 'Some task', status: 1});
+</script>
 
-
+<script>
 const task = document.getElementById('add_task');
 const tasksContainer = document.getElementById('task_list');
+
+const renderTasks = () => {
+    const tasks = getTasksLS();
+
+    const taskHTML = tasks.map((task) => {
+        return taskTemplate(task.task, task.id);
+    }).join('');
+
+    tasksContainer.innerHTML = taskHTML;
+}
 
 const statusCode = {
     pending: '#ffffff',
@@ -97,9 +115,10 @@ const saveTask = () => {
 }
 
 const deleteTask = (e) => {
-    if(e.parentElement.parentElement){
-        e.parentElement.parentElement.remove();
-        console.log(e.parentElement.parentElement.getAttribute('data-task-id'));
+    const task = e.parentElement.parentElement;
+    if(task){
+        task.remove();
+        deleteTaskLS(Number(task.getAttribute('data-task-id')));
     }
 }
 
@@ -125,6 +144,8 @@ const taskTemplate = (content, id) => {
         </article>
     `;
 }
+
+renderTasks();
 </script>
 </body>
 </html>
