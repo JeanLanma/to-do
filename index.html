@@ -64,6 +64,22 @@ const storeTask = ({task, status}) => {
     return newTask;
 }
 
+
+const updateTaskList = (tasksList) => {
+    return LS('tasks', JSON.stringify(tasksList));
+}
+const updateTask = (taskId,{status}) => {
+    const tasksList = getTasksLS();
+
+    tasksList.forEach(task => {
+        if(task.id == taskId){
+            task.status = status;
+        }
+    });
+
+    updateTaskList(tasksList);
+}
+
 const deleteTaskLS = (id) => {
     const tasksList = getTasksLS().filter((task) => {
         return task.id !== id;
@@ -83,9 +99,10 @@ const tasksContainer = document.getElementById('task_list');
 
 const renderTasks = () => {
     const tasks = getTasksLS();
+    console.log(tasks)
 
     const taskHTML = tasks.map((task) => {
-        return taskTemplate(task.task, task.id);
+        return taskTemplate(task.task, task.id, task.status);
     }).join('');
 
     if(taskHTML !== ''){
@@ -101,13 +118,17 @@ const statusCode = {
 const setStatus = (element) => {
     const statusVal = element.querySelector('.status');
     const statusAttr = element.getAttribute('data-status');
+    const taskID = element.getAttribute('data-task-id');
     if(statusAttr == 0){
         statusVal.style.background = statusCode.done;
+        updateTask(taskID, {status:1})
         element.setAttribute('data-status', 1)
     } else {
         statusVal.style.background = statusCode.pending;
+        updateTask(taskID, {status:0})
         element.setAttribute('data-status', 0)
     }
+    renderTasks();
 }
 
 const saveTask = () => {
@@ -131,11 +152,10 @@ const listenEnter = (e) => {
 }
 
 
-const taskTemplate = (content, id) => {
-    let status = 0;
+const taskTemplate = (content, id, status = 0) => {
     return `
     <article class="my-2" onclick="setStatus(this)" data-status="${status}" data-task-id="${id}">
-            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status hover:bg-[#E4F52A]/30">
+            <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md ${status == 0 ? 'bg-[#FFFFFF]' : 'bg-[#E4F52A]'} status hover:bg-[#E4F52A]/30">
                 <div class="flex">
                     <div><p class="text-xl truncate w-60">${content}</p></div>
                 </div>
