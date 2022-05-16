@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail With </title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="h-16 flex items-center justify-center mt-7">
+        <h1 class="text-5xl underline text-center">Detail Task.</h1>
+    </header>
+
+    <section class="text-center text-2xl">
+        
+        <!-- Date -->
+        <div class="my-5" id="date_container">
+            <p class="text-blue-ok">2022-05-15</p>
+        </div>
+        <!-- Errors -->
+        <div class="my-5" id="show_errors">
+        </div>
+
+        <!-- Input -->
+        <div>
+            <form action="#" onsubmit="Validate(event, this)">
+                <div class="my-10">
+                    <label for="task"></label>
+                    <p class="mx-auto text-xl border-x-0 border-t-0 border-b-2 border-black w-64 max-h-fit" contenteditable="true" id="task">Alimentar a mis mascotas con su comida facvorita.</p>
+                </div>
+
+                <div class="my-10">
+                    <a href="/"><button type="button" class="w-36 h-11 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer">Cancel</button></a>
+                    <input class="w-36 h-11 bg-blue-ok hover:bg-blue-ok/50 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <script src="/LS.js"></script>
+
+    <script>
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+        });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+        const Task = params.task; // "some_value"
+
+        document.getElementById('task').textContent = getTaskLS(Task).task;
+
+    </script>
+
+    <script>
+        const user = {
+            userName: 'admin',
+            pass: '123'
+        }
+        const errorContainer = document.getElementById('show_errors');
+
+        const printError = (message) => {
+            if(typeof message == 'string') 
+                errorContainer.innerHTML = `<p class="text-[#F5635B]">${message}</p>`;
+            if(message instanceof Array){
+                message.forEach(msg => {
+                    return errorContainer.innerHTML += `<p class="text-[#F5635B]">${msg}</p>`;
+                });
+                return;
+            }
+            
+        };
+        const cleanErrors = () => {errorContainer.innerHTML = '';};
+
+        const Validate = (e, form)=>{
+            const Errors = [];
+            e.preventDefault();
+            cleanErrors();
+            if(document.getElementById('task').textContent == '') Errors.push('Tarea Vacia');
+
+            if(Errors.length > 0){
+                printError(Errors);
+            }
+        }
+    </script>
+    
+</body>
+</html>
