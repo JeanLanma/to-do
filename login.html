@@ -21,13 +21,15 @@
     <section class="text-center text-2xl">
         
         <!-- Errors -->
-        <div class="my-5">
-            <p class="text-[#F5635B]">Credenciales Incorrectas</p>
+        <div class="my-5" id="show_errors">
+            <!-- <p class="text-[#F5635B]">Credenciales Incorrectas</p> -->
+            <!-- <p class="text-[#F5635B]">El usuario es requerido!</p> -->
+            <!-- <p class="text-[#F5635B]">La contraseña es requerida!</p> -->
         </div>
 
         <!-- Input -->
         <div>
-            <form action="#">
+            <form action="#" onsubmit="Validate(event, this)">
                 <div class="my-10">
                     <label for="user"></label>
                     <input class="text-xl border-x-0 border-t-0 border-b-2 border-black w-64" name="user" type="text" placeholder="User :">
@@ -38,12 +40,59 @@
                 </div>
 
                 <div class="my-10">
-                    <input class="w-36 h-11 border-2 border-black rounded-md font-bold" type="submit" value="Log In">
+                    <input class="w-36 h-11 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Log In">
                 </div>
             </form>
         </div>
 
     </section>
+
+    <script>
+        const user = {
+            userName: 'admin',
+            pass: '123'
+        }
+        const errorContainer = document.getElementById('show_errors');
+
+        const printError = (message) => {
+            if(typeof message == 'string') 
+                errorContainer.innerHTML = `<p class="text-[#F5635B]">${message}</p>`;
+            if(message instanceof Array){
+                message.forEach(msg => {
+                    return errorContainer.innerHTML += `<p class="text-[#F5635B]">${msg}</p>`;
+                });
+                return;
+            }
+            
+        };
+        const cleanErrors = () => {errorContainer.innerHTML = '';};
+
+        const Validate = (e, form)=>{
+            const Errors = [];
+            e.preventDefault();
+            cleanErrors();
+            if(form.user.value == '') Errors.push('Usuario Vacio');
+
+            if(form.password.value == '') Errors.push('Password Vacio');
+
+            if(Errors.length === 0 ){
+                if(form.password.value !== user.pass || form.user.value !== user.userName)
+                Errors.push('Credenciales Incorrectas!');
+            }
+
+
+            console.log(Errors);
+
+            if(Errors.length > 0){
+                printError(Errors);
+            } else {
+                errorContainer.innerHTML = '<p class="text-[#429DF5]">Has Iniciado Session!<p>'
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000)
+            }
+        }
+    </script>
     
 </body>
 </html>
