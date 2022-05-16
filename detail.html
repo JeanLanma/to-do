@@ -25,8 +25,7 @@
             <p class="text-blue-ok">2022-05-15</p>
         </div>
         <!-- Errors -->
-        <div class="my-5" id="show_errors">
-        </div>
+        <div class="my-5" id="show_errors"></div>
 
         <!-- Input -->
         <div>
@@ -37,8 +36,8 @@
                 </div>
 
                 <div class="my-10">
-                    <a href="/"><button type="button" class="w-36 h-11 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer">Cancel</button></a>
-                    <input class="w-36 h-11 bg-blue-ok hover:bg-blue-ok/50 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Save">
+                    <a href="/"><button type="button" class="w-36 h-11 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer">Back</button></a>
+                    <input onclick="alertSuccess()" class="w-36 h-11 bg-blue-ok hover:bg-blue-ok/50 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Save">
                 </div>
             </form>
         </div>
@@ -48,21 +47,22 @@
     <script src="/LS.js"></script>
 
     <script>
+
         const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
         });
         // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
         const Task = params.task; // "some_value"
-
         document.getElementById('task').textContent = getTaskLS(Task).task;
+
+        const setTask = () => {
+            const taskText = document.getElementById('task').textContent;
+            updateTask(Task,{task: taskText});
+        }
 
     </script>
 
     <script>
-        const user = {
-            userName: 'admin',
-            pass: '123'
-        }
         const errorContainer = document.getElementById('show_errors');
 
         const printError = (message) => {
@@ -80,13 +80,23 @@
 
         const Validate = (e, form)=>{
             const Errors = [];
+            const taskText = document.getElementById('task').textContent;
+
             e.preventDefault();
-            cleanErrors();
-            if(document.getElementById('task').textContent == '') Errors.push('Tarea Vacia');
+            if(taskText.length < 1) Errors.push('Tarea Vacia');
 
             if(Errors.length > 0){
+                cleanErrors();
+
                 printError(Errors);
             }
+        }
+
+        const alertSuccess = (time = false) => {
+            errorContainer.innerHTML = '<p class="text-blue-ok">Task Updated!</p>';
+            setTimeout(() => {
+                cleanErrors();
+            },2000)
         }
     </script>
     

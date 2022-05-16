@@ -24,12 +24,12 @@ const updateTaskList = (tasksList) => {
     return LS('tasks', JSON.stringify(tasksList));
 }
 
-const updateTask = (taskId,{status}) => {
+const updateTask = (taskId,{status=null,task=null}) => {
     const tasksList = getTasksLS();
-
-    tasksList.forEach(task => {
-        if(task.id == taskId){
-            task.status = status;
+    tasksList.forEach(Task => {
+        if(Task.id == taskId){
+            Task.status = status ?? Task.status;
+            Task.task = task ?? Task.task;
         }
     });
 
