@@ -37,7 +37,7 @@
 
                 <div class="my-10">
                     <a href="/"><button type="button" class="w-36 h-11 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer">Back</button></a>
-                    <input onclick="alertSuccess()" class="w-36 h-11 bg-blue-ok hover:bg-blue-ok/50 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Save">
+                    <input onclick="setTask()" class="w-36 h-11 bg-blue-ok hover:bg-blue-ok/50 border-2 border-black rounded-md font-bold hover:bg-black hover:text-white cursor-pointer" type="submit" value="Save">
                 </div>
             </form>
         </div>
@@ -58,6 +58,7 @@
         const setTask = () => {
             const taskText = document.getElementById('task').textContent;
             updateTask(Task,{task: taskText});
+            alertSuccess();
         }
 
     </script>
@@ -92,11 +93,11 @@
             }
         }
 
-        const alertSuccess = (time = false) => {
+        const alertSuccess = (message = '¡Success!', duration = 2000) => {
             errorContainer.innerHTML = '<p class="text-blue-ok">Task Updated!</p>';
             setTimeout(() => {
                 cleanErrors();
-            },2000)
+            },duration)
         }
     </script>
     

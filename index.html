@@ -135,7 +135,7 @@ const listenEnter = (e) => {
 
 const taskTemplate = (content, id, status = 0) => {
     return `
-    <article class="my-2" onclick="setStatus(this)" ondblclick="goToDetail(${id})" data-status="${status}" data-task-id="${id}">
+    <article class="my-2" onclick="setStatus(this)" ondblclick="goToDetail(${id})" data-status="${status}" data-task-id="${id}" title="${content}">
             <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md ${status == 0 ? 'bg-[#FFFFFF]' : 'bg-[#E4F52A]'} status hover:bg-[#E4F52A]/30">
                 <div class="flex">
                     <div><p class="text-2xl truncate w-60">${content}</p></div>
