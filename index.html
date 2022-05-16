@@ -160,6 +160,7 @@ const setStatus = (element) => {
 }
 
 const saveTask = () => {
+    if(task.value == '') return null;
     const lastTask = storeTask({task: task.value, status: 0});
     renderTasks();
     task.value = '';
