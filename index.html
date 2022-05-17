@@ -22,7 +22,7 @@
     <section>
         <article class="flex justify-center items-center w-full px-3">
             <div class="relative">
-                <input name="add_task" id="add_task" type="text" placeholder="Add new task..." class="border border-black rounded-md w-80 h-14 text-2xl" onkeypress="listenEnter(event)">
+                <input name="add_task" id="add_task" type="text" placeholder="Add new task..." class="border border-black rounded-md w-80 h-14 text-2xl pr-11" onkeypress="listenEnter(event)">
                 <label for="add_task" class="text-5xl absolute -right-5 top-1 mr-2 hover:text-[#429DF5]" onclick="saveTask()"><i class="fa-solid fa-circle-plus"></i></label>
             </div>
         </article>
@@ -49,6 +49,10 @@
                 <div><p class="text-2xl">Limpiar todas las tareas.</p></div>
             </div>
         </article>
+    </section>
+
+    <section class="h-11">
+        <footer></footer>
     </section>
 
 <script>

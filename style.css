@@ -673,9 +673,9 @@ html {
   margin-bottom: 2.5rem;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-2 {
@@ -683,9 +683,9 @@ html {
   margin-bottom: 0.5rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .mt-7 {
@@ -798,6 +798,11 @@ html {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
+.bg-blue-ok {
+  --tw-bg-opacity: 1;
+  background-color: rgb(66 157 245 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#FFFFFF\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -813,11 +818,6 @@ html {
   background-color: rgb(228 245 42 / var(--tw-bg-opacity));
 }
 
-.bg-blue-ok {
-  --tw-bg-opacity: 1;
-  background-color: rgb(66 157 245 / var(--tw-bg-opacity));
-}
-
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -826,6 +826,10 @@ html {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.pr-11 {
+  padding-right: 2.75rem;
 }
 
 .text-center {
@@ -851,14 +855,14 @@ html {
   font-weight: 700;
 }
 
+.text-blue-ok {
+  --tw-text-opacity: 1;
+  color: rgb(66 157 245 / var(--tw-text-opacity));
+}
+
 .text-\[\#F5635B\] {
   --tw-text-opacity: 1;
   color: rgb(245 99 91 / var(--tw-text-opacity));
-}
-
-.text-\[\#429DF5\] {
-  --tw-text-opacity: 1;
-  color: rgb(66 157 245 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -866,7 +870,7 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-blue-ok {
+.text-\[\#429DF5\] {
   --tw-text-opacity: 1;
   color: rgb(66 157 245 / var(--tw-text-opacity));
 }
@@ -876,21 +880,17 @@ html {
           text-decoration-line: underline;
 }
 
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .hover\:bg-black:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-\[\#E4F52A\]\/30:hover {
-  background-color: rgb(228 245 42 / 0.3);
-}
-
 .hover\:bg-blue-ok\/50:hover {
   background-color: rgb(66 157 245 / 0.5);
+}
+
+.hover\:bg-\[\#E4F52A\]\/30:hover {
+  background-color: rgb(228 245 42 / 0.3);
 }
 
 .hover\:text-white:hover {

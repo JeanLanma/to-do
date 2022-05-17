@@ -13,7 +13,7 @@ const setID = () => {
 
 const storeTask = ({task, status}) => {
     const tasksList = getTasksLS();
-    const newTask = {id:setID(), task:task, status: 0};
+    const newTask = {id:setID(), task:task, status: 0, anotations: []};
     tasksList.push(newTask);
     LS('tasks', JSON.stringify(tasksList));
     return newTask;
@@ -34,6 +34,47 @@ const updateTask = (taskId,{status=null,task=null}) => {
     });
 
     updateTaskList(tasksList);
+}
+
+const addTaskAnotation = (taskId, Anotation) => {
+    const tasksList = getTasksLS();
+    let _task = false;
+
+    tasksList.forEach(Task => {
+        if(Task.id == taskId){
+            Task.anotations.push(Anotation);
+            _task = Task.anotations;
+            return;
+        }
+    });
+    
+    updateTaskList(tasksList);
+
+    return _task;
+}
+
+const deleteTaskAnotation = (taskId, index) => {
+    const tasksList = getTasksLS();
+
+    let _task = {};
+
+    tasksList.forEach(Task => {
+        if(Task.id == taskId){
+            Task.anotations.splice(index, 1);
+            _task = Task.anotations;
+            return;
+        }
+    });
+    
+    updateTaskList(tasksList);
+    
+    return _task;
+}
+
+const getAnotations = (taskId) => {
+    const tasksList = getTasksLS();
+    
+    return tasksList.filter(Task => (Task.id == taskId));
 }
 
 const deleteTaskLS = (id) => {

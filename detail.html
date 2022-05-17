@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail With </title>
-
+    <title>Detail With </title>    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +45,45 @@
 
     </section>
 
+    <!-- Anotations -->
+
+    <section>
+
+        <article class="flex justify-center items-center w-full px-3">
+            <div class="relative">
+                <input name="add_anotation" id="add_anotation" type="text" placeholder="Add new anotation..." class="border border-black rounded-md w-80 h-14 text-2xl pr-11" onkeypress="listenEnter(event)">
+                <label for="add_anotation" class="text-5xl absolute -right-5 top-1 mr-2 hover:text-[#429DF5]" onclick="saveAnotation()"><i class="fa-solid fa-circle-plus"></i></label>
+            </div>
+        </article>
+
+        <div id="anotations"></div>
+
+
+
+    </section>
+
+    <section class="h-11">
+        <footer></footer>
+    </section>
+
     <script src="/LS.js"></script>
+    <script>
+            const anotationsContainer = document.getElementById('anotations');
+            const Anotation = (id, content) => {
+            return `
+            <article class="my-2" data-id="${id}" data-task-id="${_task.id}">
+                <div class="mx-auto flex justify-between items-center w-80 h-14 px-4 border border-black rounded-md bg-[#FFFFFF] status hover:bg-[#E4F52A]/30">
+                    <div class="flex">
+                        <div><p class="text-2xl">${content}</p></div>
+                    </div>
+                    <div onclick="deleteAnotation(this)" class="cursor-pointer">
+                        <i class="fa-solid fa-xmark text-2xl hover:text-[#F5635B]"></i>
+                    </div>
+                </div>
+            </article>
+            `;
+        }
+    </script>
 
     <script>
 
@@ -53,12 +92,49 @@
         });
         // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
         const Task = params.task; // "some_value"
-        document.getElementById('task').textContent = getTaskLS(Task).task;
+        const _task = getTaskLS(Task);
+        document.getElementById('task').textContent = _task.task;
 
         const setTask = () => {
             const taskText = document.getElementById('task').textContent;
             updateTask(Task,{task: taskText});
             alertSuccess();
+        }
+
+
+        const saveAnotation = () => {
+            let anotationText = document.getElementById('add_anotation');
+            if(anotationText.value == '') return null;
+            console.log(addTaskAnotation(Task, anotationText.value));
+            anotationText.value = '';
+            renderAnotations();
+        }
+
+        const deleteAnotation = (these) => {
+            if(these.parentElement.parentElement.getAttribute('data-id')){
+                deleteTaskAnotation(Task, these.parentElement.parentElement.getAttribute('data-id'));
+                renderAnotations();
+            }
+        }
+        const renderAnotations = () => {
+            clearAnotationsHTML();
+            const _task = getTaskLS(Task);
+            _task.anotations.forEach( (an, index) => {
+                anotationsContainer.innerHTML += Anotation(index, an);
+            });
+        }
+        const clearAnotationsHTML = () => {
+            while(anotationsContainer.firstChild){
+                anotationsContainer.removeChild(anotationsContainer.firstChild);
+            }
+        }
+
+        renderAnotations();
+
+        const listenEnter = (e) => {
+            if(e.code === 'Enter' && task.value != ''){
+                saveAnotation();
+            }
         }
 
     </script>
@@ -99,6 +175,11 @@
                 cleanErrors();
             },duration)
         }
+    </script>
+
+    <script>
+
+        
     </script>
     
 </body>
